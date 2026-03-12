@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/collegeo/sch-app/
+    - /bin/cp -R * $DEPLOYPATH
