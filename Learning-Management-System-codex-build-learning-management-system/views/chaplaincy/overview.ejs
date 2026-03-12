@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Chaplaincy Oversight</h2>
+  </div>
+  <p class="muted">Monitor chaplaincy cohorts, field placements, and spiritual care outcomes.</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Site</th>
+        <th>Supervisor</th>
+        <th>Status</th>
+        <th>Start</th>
+        <th>End</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% placements.forEach(placement => { %>
+        <tr>
+          <td><%= placement.student_name %></td>
+          <td><%= placement.site_name %></td>
+          <td><%= placement.supervisor || '-' %></td>
+          <td><%= placement.status %></td>
+          <td><%= placement.start_date %></td>
+          <td><%= placement.end_date || '-' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <div>
+      <h2>Record Attendance</h2>
+      <p class="muted"><%= session.course_title %> · <%= session.session_date %></p>
+      <p class="muted">Topic: <%= session.topic %></p>
+    </div>
+  </div>
+
+  <form method="post" action="/instructor/attendance/<%= session.id %>/record" class="form">
+    <% students.forEach(student => { %>
+      <% const record = statusMap.get(student.id); %>
+      <div class="card">
+        <strong><%= student.full_name %></strong>
+        <div class="grid">
+          <label>Status
+            <select name="status_<%= student.id %>">
+              <option value="present" <%= record && record.status === 'present' ? 'selected' : '' %>>Present</option>
+              <option value="absent" <%= record && record.status === 'absent' ? 'selected' : '' %>>Absent</option>
+              <option value="late" <%= record && record.status === 'late' ? 'selected' : '' %>>Late</option>
+            </select>
+          </label>
+          <label>Notes
+            <input type="text" name="notes_<%= student.id %>" value="<%= record ? record.notes || '' : '' %>" />
+          </label>
+        </div>
+      </div>
+    <% }) %>
+    <button type="submit" class="button">Save Attendance</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

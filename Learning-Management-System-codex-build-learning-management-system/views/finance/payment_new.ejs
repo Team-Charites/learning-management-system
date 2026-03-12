@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>Record Payment</h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/finance/payments/new" class="form">
+    <label>Student
+      <select name="student_id" required>
+        <% students.forEach(student => { %>
+          <option value="<%= student.id %>"><%= student.full_name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Amount
+      <input type="number" name="amount" min="0" step="0.01" required />
+    </label>
+    <label>Currency
+      <input type="text" name="currency" value="NGN" />
+    </label>
+    <label>Purpose
+      <input type="text" name="purpose" required />
+    </label>
+    <label>Status
+      <select name="status">
+        <option value="pending">Pending</option>
+        <option value="paid">Paid</option>
+      </select>
+    </label>
+    <label>Reference (optional)
+      <input type="text" name="reference" />
+    </label>
+    <label>Paid Date (optional)
+      <input type="date" name="paid_at" />
+    </label>
+    <button type="submit" class="button">Save Payment</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

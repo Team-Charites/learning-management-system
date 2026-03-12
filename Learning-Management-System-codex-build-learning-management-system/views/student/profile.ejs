@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>Student Profile</h2>
+  <% if (saved) { %>
+    <div class="alert" style="background:#e6f6ef;color:#1b5e48;">Profile saved successfully.</div>
+  <% } %>
+  <form method="post" action="/student/profile" class="form">
+    <label>Admission Number
+      <input type="text" name="admission_no" value="<%= profile ? profile.admission_no || '' : '' %>" />
+    </label>
+    <label>Phone
+      <input type="text" name="phone" value="<%= profile ? profile.phone || '' : '' %>" />
+    </label>
+    <label>Gender
+      <select name="gender">
+        <option value="" <%= !profile || !profile.gender ? 'selected' : '' %>>Select</option>
+        <option value="Male" <%= profile && profile.gender === 'Male' ? 'selected' : '' %>>Male</option>
+        <option value="Female" <%= profile && profile.gender === 'Female' ? 'selected' : '' %>>Female</option>
+      </select>
+    </label>
+    <label>Date of Birth
+      <input type="date" name="date_of_birth" value="<%= profile ? profile.date_of_birth || '' : '' %>" />
+    </label>
+    <label>Address
+      <textarea name="address" rows="3"><%= profile ? profile.address || '' : '' %></textarea>
+    </label>
+    <label>Guardian Name
+      <input type="text" name="guardian_name" value="<%= profile ? profile.guardian_name || '' : '' %>" />
+    </label>
+    <label>Guardian Phone
+      <input type="text" name="guardian_phone" value="<%= profile ? profile.guardian_phone || '' : '' %>" />
+    </label>
+    <label>Program
+      <input type="text" name="program" value="<%= profile ? profile.program || '' : '' %>" />
+    </label>
+    <label>Level
+      <input type="text" name="level" value="<%= profile ? profile.level || '' : '' %>" />
+    </label>
+    <button type="submit" class="button">Save Profile</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

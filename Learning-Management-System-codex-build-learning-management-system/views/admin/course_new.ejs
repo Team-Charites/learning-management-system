@@ -1,0 +1,37 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>Create Course</h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/admin/courses/new" class="form">
+    <label>Title
+      <input type="text" name="title" required />
+    </label>
+    <label>Course Code
+      <input type="text" name="code" required />
+    </label>
+    <label>Program
+      <input type="text" name="program" placeholder="Public Health (ND/HND)" required />
+    </label>
+    <label>Level
+      <input type="text" name="level" placeholder="ND 1, ND 2, HND 1" required />
+    </label>
+    <label>Credits
+      <input type="number" name="credits" value="3" min="1" />
+    </label>
+    <label>Description
+      <textarea name="description" rows="4" required></textarea>
+    </label>
+    <label>Instructor (optional)
+      <select name="instructor_id">
+        <option value="">Unassigned</option>
+        <% instructors.forEach(instructor => { %>
+          <option value="<%= instructor.id %>"><%= instructor.full_name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <button type="submit" class="button">Create Course</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

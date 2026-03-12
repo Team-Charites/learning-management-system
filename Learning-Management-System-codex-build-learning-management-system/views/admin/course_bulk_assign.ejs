@@ -1,0 +1,61 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>Bulk Assign Courses</h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <% if (saved) { %>
+    <div class="alert" style="background:#e6f6ef;color:#1b5e48;">Assignments updated successfully.</div>
+  <% } %>
+
+  <form method="get" action="/admin/courses/assign/bulk" class="form" style="margin-bottom:16px;">
+    <label>Program Filter
+      <select name="program">
+        <option value="">All Programs</option>
+        <% programs.forEach(item => { %>
+          <option value="<%= item %>" <%= filters.program === item ? 'selected' : '' %>><%= item %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Level Filter
+      <select name="level">
+        <option value="">All Levels</option>
+        <% levels.forEach(item => { %>
+          <option value="<%= item %>" <%= filters.level === item ? 'selected' : '' %>><%= item %></option>
+        <% }) %>
+      </select>
+    </label>
+    <button type="submit" class="button">Apply Filters</button>
+  </form>
+
+  <form method="post" action="/admin/courses/assign/bulk" class="form">
+    <input type="hidden" name="program" value="<%= filters.program %>" />
+    <input type="hidden" name="level" value="<%= filters.level %>" />
+    <label>Instructor (for assign)
+      <select name="instructor_id">
+        <option value="">Select Instructor</option>
+        <% instructors.forEach(instructor => { %>
+          <option value="<%= instructor.id %>"><%= instructor.full_name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Courses
+      <div class="list">
+        <% courses.forEach(course => { %>
+          <label class="card" style="display:flex;gap:10px;align-items:center;">
+            <input type="checkbox" name="course_ids" value="<%= course.id %>" />
+            <div>
+              <strong><%= course.code %></strong> — <%= course.title %>
+              <div class="muted"><%= course.program %> · <%= course.level %></div>
+            </div>
+          </label>
+        <% }) %>
+      </div>
+    </label>
+    <div class="grid">
+      <button type="submit" name="action" value="assign" class="button">Assign Selected Courses</button>
+      <button type="submit" name="action" value="unassign" class="button" style="background:#8a1f1f;">Unassign Selected Courses</button>
+    </div>
+  </form>
+</section>
+<%- include('../partials/footer') %>

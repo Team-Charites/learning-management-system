@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Grades</h2>
+  </div>
+  <% if (grades.length === 0) { %>
+    <p class="muted">No graded submissions yet.</p>
+  <% } %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Assignment</th>
+        <th>Score</th>
+        <th>Max</th>
+        <th>Graded</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% grades.forEach(grade => { %>
+        <tr>
+          <td><%= grade.course_title %></td>
+          <td><%= grade.assignment_title %></td>
+          <td><%= grade.score %></td>
+          <td><%= grade.max_score %></td>
+          <td><%= grade.graded_at %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

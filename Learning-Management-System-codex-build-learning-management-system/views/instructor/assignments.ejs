@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <div>
+      <h2><%= course.title %></h2>
+      <p class="muted"><%= course.code %> · <%= course.level %></p>
+    </div>
+    <a class="button" href="/instructor/courses/<%= course.id %>/assignments/new">New Assignment</a>
+  </div>
+
+  <% if (assignments.length === 0) { %>
+    <p class="muted">No assignments yet.</p>
+  <% } %>
+
+  <div class="grid">
+    <% assignments.forEach(assignment => { %>
+      <div class="card">
+        <h3><%= assignment.title %></h3>
+        <p class="muted">Due: <%= assignment.due_date || 'Not set' %></p>
+        <p><%= assignment.description %></p>
+        <a class="link-button" href="/instructor/assignments/<%= assignment.id %>/submissions">View Submissions</a>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

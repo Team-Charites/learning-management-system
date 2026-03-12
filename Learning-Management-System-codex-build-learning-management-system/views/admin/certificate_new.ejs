@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>Issue Certificate</h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/admin/certificates/new" class="form">
+    <label>Student
+      <select name="student_id" required>
+        <% students.forEach(student => { %>
+          <option value="<%= student.id %>"><%= student.full_name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Program
+      <input type="text" name="program" placeholder="Public Health" required />
+    </label>
+    <label>Level
+      <input type="text" name="level" placeholder="ND / HND" required />
+    </label>
+    <label>Title
+      <input type="text" name="title" placeholder="Public Health Technologist" required />
+    </label>
+    <button type="submit" class="button">Issue Certificate</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <div>
+      <h2>Attendance: <%= course.title %></h2>
+      <p class="muted"><%= course.code %> · <%= course.level %></p>
+    </div>
+    <a class="button" href="/instructor/courses/<%= course.id %>/attendance/new">New Session</a>
+  </div>
+
+  <% if (sessions.length === 0) { %>
+    <p class="muted">No attendance sessions yet.</p>
+  <% } %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Topic</th>
+        <th>Record</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% sessions.forEach(session => { %>
+        <tr>
+          <td><%= session.session_date %></td>
+          <td><%= session.topic %></td>
+          <td>
+            <a class="link-button" href="/instructor/attendance/<%= session.id %>/record">Mark Attendance</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

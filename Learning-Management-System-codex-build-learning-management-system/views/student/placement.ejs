@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Clinical Placements</h2>
+  </div>
+  <% if (placements.length === 0) { %>
+    <p class="muted">No placements assigned yet.</p>
+  <% } %>
+  <div class="list">
+    <% placements.forEach(placement => { %>
+      <div class="card">
+        <h3><%= placement.site_name %></h3>
+        <p class="muted">Supervisor: <%= placement.supervisor || 'Not listed' %></p>
+        <p>Start: <%= placement.start_date %> | End: <%= placement.end_date || 'Open' %></p>
+        <p>Status: <strong><%= placement.status %></strong></p>
+        <% if (placement.notes) { %>
+          <p class="muted"><%= placement.notes %></p>
+        <% } %>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

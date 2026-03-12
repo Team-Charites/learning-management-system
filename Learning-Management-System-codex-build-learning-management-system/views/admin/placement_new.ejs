@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>Create Placement</h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/admin/placements/new" class="form">
+    <label>Student
+      <select name="student_id" required>
+        <% students.forEach(student => { %>
+          <option value="<%= student.id %>"><%= student.full_name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Site Name
+      <input type="text" name="site_name" required />
+    </label>
+    <label>Supervisor
+      <input type="text" name="supervisor" />
+    </label>
+    <label>Start Date
+      <input type="date" name="start_date" required />
+    </label>
+    <label>End Date
+      <input type="date" name="end_date" />
+    </label>
+    <label>Status
+      <select name="status">
+        <option value="active">Active</option>
+        <option value="completed">Completed</option>
+        <option value="paused">Paused</option>
+      </select>
+    </label>
+    <label>Notes
+      <textarea name="notes" rows="3"></textarea>
+    </label>
+    <button type="submit" class="button">Save Placement</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

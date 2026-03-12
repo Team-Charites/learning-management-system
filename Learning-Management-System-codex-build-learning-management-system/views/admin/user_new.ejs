@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>Create User</h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/admin/users/new" class="form">
+    <label>Full Name
+      <input type="text" name="full_name" required />
+    </label>
+    <label>Email
+      <input type="email" name="email" required />
+    </label>
+    <label>Role
+      <select name="role" required>
+        <option>Admin</option>
+        <option>Registrar</option>
+        <option>Instructor</option>
+        <option>Student</option>
+        <option>Finance</option>
+        <option>Chaplaincy Supervisor</option>
+      </select>
+    </label>
+    <label>Temporary Password
+      <input type="text" name="password" required />
+    </label>
+    <button type="submit" class="button">Create</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

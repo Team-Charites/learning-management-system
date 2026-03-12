@@ -1,0 +1,62 @@
+<%- include('partials/header') %>
+<section class="dashboard">
+  <h2>Welcome, <%= currentUser.full_name %></h2>
+  <p class="muted">Role: <%= currentUser.role %></p>
+
+  <% if (currentUser.role === 'Admin') { %>
+    <div class="grid">
+      <a class="card link" href="/admin/users">Manage Users</a>
+      <a class="card link" href="/admin/courses">Manage Courses</a>
+      <a class="card link" href="/admin/enrollments">Manage Enrollments</a>
+      <a class="card link" href="/admin/students">Student Records</a>
+      <a class="card link" href="/admin/placements">Clinical Placements</a>
+      <a class="card link" href="/admin/certificates">Certificates & Transcripts</a>
+      <a class="card link" href="/admin/grading-scale">GPA Scale Editor</a>
+    </div>
+  <% } %>
+
+  <% if (currentUser.role === 'Registrar') { %>
+    <div class="grid">
+      <a class="card link" href="/admin/enrollments">Enroll Students</a>
+      <a class="card link" href="/admin/courses">View Courses</a>
+      <a class="card link" href="/admin/students">Student Records</a>
+      <a class="card link" href="/admin/placements">Clinical Placements</a>
+      <a class="card link" href="/admin/certificates">Certificates & Transcripts</a>
+    </div>
+  <% } %>
+
+  <% if (currentUser.role === 'Instructor') { %>
+    <div class="grid">
+      <a class="card link" href="/instructor/courses">My Courses</a>
+    </div>
+  <% } %>
+
+  <% if (currentUser.role === 'Student') { %>
+    <div class="grid">
+      <a class="card link" href="/student/profile">My Profile</a>
+      <a class="card link" href="/student/courses">My Enrolled Courses</a>
+      <a class="card link" href="/student/assignments">Assignments</a>
+      <a class="card link" href="/student/grades">Grades</a>
+      <a class="card link" href="/student/attendance">Attendance</a>
+      <a class="card link" href="/student/placement">Clinical Placement</a>
+      <a class="card link" href="/student/payments">Payments</a>
+      <a class="card link" href="/student/certificates">Certificates</a>
+      <a class="card link" href="/student/transcript">Transcript</a>
+    </div>
+  <% } %>
+
+  <% if (currentUser.role === 'Finance') { %>
+    <div class="grid">
+      <a class="card link" href="/finance/overview">Finance Overview</a>
+      <a class="card link" href="/finance/payments/new">Record Payment</a>
+    </div>
+  <% } %>
+
+  <% if (currentUser.role === 'Chaplaincy Supervisor') { %>
+    <div class="grid">
+      <a class="card link" href="/chaplaincy/overview">Chaplaincy Oversight</a>
+      <a class="card link" href="/admin/placements">Clinical Placements</a>
+    </div>
+  <% } %>
+</section>
+<%- include('partials/footer') %>

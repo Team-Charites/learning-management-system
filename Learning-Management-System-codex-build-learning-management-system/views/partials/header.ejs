@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chaplaincy College LMS</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <button class="back-button" onclick="history.back()" aria-label="Go back">? Back</button>
+      <div class="brand-mark">CC</div>
+      <div>
+        <div class="brand-name">Chaplaincy College of Health Science & Technology</div>
+        <div class="brand-tagline">Training Medical Chaplains for Holistic Health and Spiritual Care</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="/resources">Resources</a>
+      <% if (currentUser) { %>
+        <a href="/dashboard">Dashboard</a>
+        <form class="inline" method="post" action="/logout">
+          <button type="submit" class="link-button">Logout</button>
+        </form>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </nav>
+  </header>
+  <main class="container">

@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>Assign Instructor</h2>
+  <p class="muted"><%= course.title %> (<%= course.code %>)</p>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/admin/courses/<%= course.id %>/assign" class="form">
+    <label>Instructor
+      <select name="instructor_id">
+        <option value="">Unassigned</option>
+        <% instructors.forEach(instructor => { %>
+          <option value="<%= instructor.id %>" <%= course.instructor_id === instructor.id ? 'selected' : '' %>>
+            <%= instructor.full_name %>
+          </option>
+        <% }) %>
+      </select>
+    </label>
+    <button type="submit" class="button">Save Assignment</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

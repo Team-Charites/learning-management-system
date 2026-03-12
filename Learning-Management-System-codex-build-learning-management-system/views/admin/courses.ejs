@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Courses</h2>
+    <div class="actions">
+      <a class="button" href="/admin/courses/new">Add Course</a>
+      <a class="button" href="/admin/courses/assign/bulk">Bulk Assign</a>
+      <a class="button" href="/admin/courses/export.csv">Export CSV</a>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Title</th>
+        <th>Program</th>
+        <th>Level</th>
+        <th>Credits</th>
+        <th>Instructor</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% courses.forEach(course => { %>
+        <tr>
+          <td><%= course.code %></td>
+          <td><%= course.title %></td>
+          <td><%= course.program %></td>
+          <td><%= course.level %></td>
+          <td><%= course.credits %></td>
+          <td><%= course.instructor_name || 'Unassigned' %></td>
+          <td>
+            <a class="link-button" href="/admin/courses/<%= course.id %>/assign">Assign</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

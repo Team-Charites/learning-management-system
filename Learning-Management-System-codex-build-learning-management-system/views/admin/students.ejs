@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Students</h2>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Admission No</th>
+        <th>Program</th>
+        <th>Level</th>
+        <th>Transcript</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% students.forEach(student => { %>
+        <tr>
+          <td><%= student.full_name %></td>
+          <td><%= student.email %></td>
+          <td><%= student.admission_no || '-' %></td>
+          <td><%= student.program || '-' %></td>
+          <td><%= student.level || '-' %></td>
+          <td>
+            <a class="link-button" href="/admin/students/<%= student.id %>/transcript">View</a>
+            <span class="muted"> | </span>
+            <a class="link-button" href="/admin/students/<%= student.id %>/transcript/pdf">PDF</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

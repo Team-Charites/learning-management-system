@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <div>
+      <h2>Submissions: <%= assignment.title %></h2>
+      <p class="muted"><%= assignment.course_title %></p>
+    </div>
+  </div>
+
+  <% if (submissions.length === 0) { %>
+    <p class="muted">No submissions yet.</p>
+  <% } %>
+
+  <div class="list">
+    <% submissions.forEach(submission => { %>
+      <div class="card">
+        <h3><%= submission.student_name %></h3>
+        <p class="muted">Submitted: <%= submission.submitted_at %></p>
+        <p><%= submission.content %></p>
+        <form method="post" action="/instructor/submissions/<%= submission.id %>/grade" class="form">
+          <label>Score (Max <%= assignment.max_score %>)
+            <input type="number" name="score" min="0" max="<%= assignment.max_score %>" value="<%= submission.score ?? '' %>" />
+          </label>
+          <label>Feedback
+            <textarea name="feedback" rows="3"><%= submission.feedback ?? '' %></textarea>
+          </label>
+          <button type="submit" class="button">Save Grade</button>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

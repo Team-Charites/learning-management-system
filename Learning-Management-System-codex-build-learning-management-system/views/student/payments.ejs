@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Payments</h2>
+  </div>
+  <% if (payments.length === 0) { %>
+    <p class="muted">No payment records yet.</p>
+  <% } %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Purpose</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Reference</th>
+        <th>Paid At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% payments.forEach(payment => { %>
+        <tr>
+          <td><%= payment.purpose %></td>
+          <td><%= payment.currency %> <%= payment.amount %></td>
+          <td><%= payment.status %></td>
+          <td><%= payment.reference || '-' %></td>
+          <td><%= payment.paid_at || '-' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

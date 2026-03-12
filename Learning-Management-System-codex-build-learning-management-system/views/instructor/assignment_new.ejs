@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>New Assignment: <%= course.title %></h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/instructor/courses/<%= course.id %>/assignments/new" class="form">
+    <label>Title
+      <input type="text" name="title" required />
+    </label>
+    <label>Due Date
+      <input type="date" name="due_date" />
+    </label>
+    <label>Max Score
+      <input type="number" name="max_score" value="100" min="1" />
+    </label>
+    <label>Description
+      <textarea name="description" rows="5" required></textarea>
+    </label>
+    <button type="submit" class="button">Create Assignment</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

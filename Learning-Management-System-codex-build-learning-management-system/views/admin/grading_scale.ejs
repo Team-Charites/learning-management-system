@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>GPA Scale Editor</h2>
+  <p class="muted">Define the minimum score and grade points for each letter grade.</p>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <% if (saved) { %>
+    <div class="alert" style="background:#e6f6ef;color:#1b5e48;">Grading scale updated.</div>
+  <% } %>
+
+  <form method="post" action="/admin/grading-scale" class="form">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Letter</th>
+          <th>Minimum Score</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% scale.forEach(row => { %>
+          <tr>
+            <td><input type="text" name="letter" value="<%= row.letter %>" maxlength="2" required /></td>
+            <td><input type="number" name="min_score" value="<%= row.min_score %>" min="0" max="100" required /></td>
+            <td><input type="number" name="points" value="<%= row.points %>" min="0" max="10" required /></td>
+          </tr>
+        <% }) %>
+        <% for (let i = 0; i < 2; i++) { %>
+          <tr>
+            <td><input type="text" name="letter" maxlength="2" /></td>
+            <td><input type="number" name="min_score" min="0" max="100" /></td>
+            <td><input type="number" name="points" min="0" max="10" /></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <button type="submit" class="button">Save Scale</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

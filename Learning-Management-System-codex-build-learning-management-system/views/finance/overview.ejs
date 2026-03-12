@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Finance Overview</h2>
+    <a class="button" href="/finance/payments/new">Record Payment</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Purpose</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Reference</th>
+        <th>Paid At</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% payments.forEach(payment => { %>
+        <tr>
+          <td><%= payment.student_name %></td>
+          <td><%= payment.purpose %></td>
+          <td><%= payment.currency %> <%= payment.amount %></td>
+          <td><%= payment.status %></td>
+          <td><%= payment.reference || '-' %></td>
+          <td><%= payment.paid_at || '-' %></td>
+          <td>
+            <% if (payment.status !== 'paid') { %>
+              <form method="post" action="/finance/payments/<%= payment.id %>/mark-paid" class="inline">
+                <button type="submit" class="link-button">Mark Paid</button>
+              </form>
+            <% } else { %>
+              <span class="muted">Completed</span>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

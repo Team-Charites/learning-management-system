@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Attendance</h2>
+  </div>
+  <% if (attendance.length === 0) { %>
+    <p class="muted">Attendance records will appear here.</p>
+  <% } %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Date</th>
+        <th>Topic</th>
+        <th>Status</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% attendance.forEach(record => { %>
+        <tr>
+          <td><%= record.course_title %></td>
+          <td><%= record.session_date %></td>
+          <td><%= record.topic %></td>
+          <td><%= record.status %></td>
+          <td><%= record.notes || '-' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

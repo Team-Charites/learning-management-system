@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Assignments</h2>
+  </div>
+  <% if (assignments.length === 0) { %>
+    <p class="muted">No assignments yet.</p>
+  <% } %>
+  <div class="grid">
+    <% assignments.forEach(assignment => { %>
+      <a class="card link" href="/student/assignments/<%= assignment.id %>">
+        <h3><%= assignment.title %></h3>
+        <p class="muted"><%= assignment.course_title %></p>
+        <p class="muted">Due: <%= assignment.due_date || 'Not set' %></p>
+      </a>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

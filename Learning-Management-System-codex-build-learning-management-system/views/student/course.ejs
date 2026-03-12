@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <div>
+      <h2><%= course.title %></h2>
+      <p class="muted"><%= course.code %> · <%= course.level %></p>
+    </div>
+  </div>
+
+  <% if (lessons.length === 0) { %>
+    <p class="muted">Lessons will appear here once posted by your instructor.</p>
+  <% } else { %>
+    <ul class="list">
+      <% lessons.forEach(lesson => { %>
+        <li>
+          <strong><%= lesson.order_index %>. <%= lesson.title %></strong>
+          <p><%= lesson.content %></p>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
+<%- include('../partials/footer') %>

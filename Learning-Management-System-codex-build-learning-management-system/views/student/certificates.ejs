@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Certificates</h2>
+    <a class="button" href="/student/transcript">View Transcript</a>
+  </div>
+  <% if (certificates.length === 0) { %>
+    <p class="muted">No certificates issued yet.</p>
+  <% } %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Program</th>
+        <th>Level</th>
+        <th>Issued</th>
+        <th>Reference</th>
+        <th>PDF</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% certificates.forEach(cert => { %>
+        <tr>
+          <td><%= cert.title %></td>
+          <td><%= cert.program %></td>
+          <td><%= cert.level %></td>
+          <td><%= cert.issued_at %></td>
+          <td><%= cert.reference %></td>
+          <td><a class="link-button" href="/certificates/<%= cert.id %>/pdf">Download</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

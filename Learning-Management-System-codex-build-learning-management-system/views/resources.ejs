@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+<section>
+  <div class="section-header">
+    <div>
+      <h2>Free Public Health Databases</h2>
+      <p class="muted">Curated open-access sources for students, faculty, and practitioners.</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <% resources.forEach(resource => { %>
+      <div class="card">
+        <h3><%= resource.name %></h3>
+        <p class="muted">Access via the official website for the latest journals and reports.</p>
+        <a class="link-button" href="<%= resource.url %>" target="_blank" rel="noopener noreferrer">Visit Resource</a>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>

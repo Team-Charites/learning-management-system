@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>New Lesson: <%= course.title %></h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/instructor/courses/<%= course.id %>/lessons/new" class="form">
+    <label>Lesson Title
+      <input type="text" name="title" required />
+    </label>
+    <label>Order (1, 2, 3...)
+      <input type="number" name="order_index" value="1" min="1" />
+    </label>
+    <label>Content
+      <textarea name="content" rows="6" required></textarea>
+    </label>
+    <button type="submit" class="button">Create Lesson</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

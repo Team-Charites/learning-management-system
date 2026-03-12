@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>My Courses</h2>
+  </div>
+  <% if (courses.length === 0) { %>
+    <p class="muted">No courses assigned yet.</p>
+  <% } %>
+  <div class="grid">
+    <% courses.forEach(course => { %>
+      <div class="card">
+        <h3><%= course.title %></h3>
+        <p class="muted"><%= course.code %> · <%= course.level %></p>
+        <div class="grid">
+          <a class="link-button" href="/instructor/courses/<%= course.id %>/lessons">Lessons</a>
+          <a class="link-button" href="/instructor/courses/<%= course.id %>/assignments">Assignments</a>
+          <a class="link-button" href="/instructor/courses/<%= course.id %>/attendance">Attendance</a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

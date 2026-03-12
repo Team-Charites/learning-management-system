@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Enrollments</h2>
+    <a class="button" href="/admin/enrollments/new">Enroll Student</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Status</th>
+        <th>Enrolled</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% enrollments.forEach(enrollment => { %>
+        <tr>
+          <td><%= enrollment.student_name %></td>
+          <td><%= enrollment.course_title %></td>
+          <td><%= enrollment.status %></td>
+          <td><%= enrollment.enrolled_at %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

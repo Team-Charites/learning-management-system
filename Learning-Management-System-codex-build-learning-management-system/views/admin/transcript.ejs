@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <div>
+      <h2>Transcript: <%= student.full_name %></h2>
+      <p class="muted"><%= student.email %></p>
+    </div>
+    <a class="button" href="/admin/students/<%= student.id %>/transcript/pdf">Download PDF</a>
+  </div>
+
+  <section class="card">
+    <h3>Student Details</h3>
+    <p>Admission No: <%= profile ? profile.admission_no || 'Not set' : 'Not set' %></p>
+    <p>Program: <%= profile ? profile.program || 'Not set' : 'Not set' %></p>
+    <p>Level: <%= profile ? profile.level || 'Not set' : 'Not set' %></p>
+  </section>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Course</th>
+        <th>Credits</th>
+        <th>Average</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% transcript.rows.forEach(row => { %>
+        <tr>
+          <td><%= row.code %></td>
+          <td><%= row.title %></td>
+          <td><%= row.credits %></td>
+          <td><%= row.average !== null ? row.average + '%' : 'N/A' %></td>
+          <td><%= row.letter %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <section class="card">
+    <h3>GPA Summary</h3>
+    <p>Total Credits: <strong><%= transcript.totalCredits %></strong></p>
+    <p>GPA: <strong><%= transcript.gpa !== null ? transcript.gpa : 'N/A' %></strong></p>
+  </section>
+</section>
+<%- include('../partials/footer') %>

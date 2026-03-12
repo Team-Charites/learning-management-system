@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<section class="card">
+  <h2><%= assignment.title %></h2>
+  <p class="muted"><%= assignment.course_title %></p>
+  <p><%= assignment.description %></p>
+  <p class="muted">Due: <%= assignment.due_date || 'Not set' %> | Max Score: <%= assignment.max_score %></p>
+</section>
+
+<section class="form-card">
+  <h3>Submit Assignment</h3>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/student/assignments/<%= assignment.id %>/submit" class="form">
+    <label>Submission
+      <textarea name="content" rows="6" required><%= submission ? submission.content : '' %></textarea>
+    </label>
+    <button type="submit" class="button"><%= submission ? 'Update Submission' : 'Submit' %></button>
+  </form>
+</section>
+
+<% if (submission && submission.score !== null && submission.score !== undefined) { %>
+  <section class="card">
+    <h3>Grade</h3>
+    <p>Score: <strong><%= submission.score %></strong></p>
+    <p class="muted">Feedback: <%= submission.feedback || 'No feedback yet.' %></p>
+  </section>
+<% } %>
+
+<%- include('../partials/footer') %>

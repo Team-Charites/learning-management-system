@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>Enroll Student</h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/admin/enrollments/new" class="form">
+    <label>Course
+      <select name="course_id" required>
+        <% courses.forEach(course => { %>
+          <option value="<%= course.id %>"><%= course.title %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Student
+      <select name="student_id" required>
+        <% students.forEach(student => { %>
+          <option value="<%= student.id %>"><%= student.full_name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <button type="submit" class="button">Enroll</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>

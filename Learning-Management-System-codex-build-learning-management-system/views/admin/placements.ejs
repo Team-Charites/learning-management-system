@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<section>
+  <div class="section-header">
+    <h2>Clinical Placements</h2>
+    <a class="button" href="/admin/placements/new">Add Placement</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Site</th>
+        <th>Supervisor</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% placements.forEach(placement => { %>
+        <tr>
+          <td><%= placement.student_name %></td>
+          <td><%= placement.site_name %></td>
+          <td><%= placement.supervisor || '-' %></td>
+          <td><%= placement.start_date %></td>
+          <td><%= placement.end_date || '-' %></td>
+          <td><%= placement.status %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+<%- include('../partials/footer') %>

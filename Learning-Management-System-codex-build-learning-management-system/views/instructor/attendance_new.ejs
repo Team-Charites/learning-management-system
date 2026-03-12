@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<section class="form-card">
+  <h2>New Attendance Session: <%= course.title %></h2>
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+  <form method="post" action="/instructor/courses/<%= course.id %>/attendance/new" class="form">
+    <label>Session Date
+      <input type="date" name="session_date" required />
+    </label>
+    <label>Topic
+      <input type="text" name="topic" required />
+    </label>
+    <button type="submit" class="button">Create Session</button>
+  </form>
+</section>
+<%- include('../partials/footer') %>
